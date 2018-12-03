@@ -31,4 +31,4 @@ Created by `Fan Yang <https://github.com/yangfly>`_
 
 
 .. 写作: http://www.bary.com/doc/a/228277572381775842/#6ed261ef
-.. 配置：https://blog.csdn.net/a201577f0546/article/details/78867756
+.. 配置：https://www.xncoding.com/2017/01/22/fullstack/readthedoc.html

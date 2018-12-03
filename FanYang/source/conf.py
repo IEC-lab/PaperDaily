@@ -257,3 +257,18 @@ def patched_make_field(self, types, domain, items, **kw):
     return nodes.field('', fieldname, fieldbody)
 
 TypedField.make_field = patched_make_field
+
+# Markdown Support -------------------------------------------------------
+from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
+source_parsers = {
+    '.md': CommonMarkParser,
+}
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+            #'url_resolver': lambda url: github_doc_root + url,
+            'auto_toc_tree_section': 'Contents',
+            'enable_eval_rst': True,
+            'enable_auto_doc_ref': True,
+        }, True)
+    app.add_transform(AutoStructify)
