@@ -39,7 +39,7 @@ release = u'master'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx_markdown_tables',
+    # 'sphinx_markdown_tables',
     # 'sphinx.ext.autodoc',
     # 'sphinx.ext.autosummary',
     # 'sphinx.ext.doctest',
