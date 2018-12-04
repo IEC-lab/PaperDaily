@@ -1,5 +1,12 @@
 # Paper Daily
 
-Read Paper Every Day! :)
+Read Paper Every Day!
 
-go! https://paperdaily.readthedocs.io/zh/latest/index.html
+:house_with_garden: RTF families:
+:page_with_curl: RTFM 
+:octocat: RTFSC 
+:notebook: RTFD
+:newspaper: RTFP
+
+Let's RTFPaper! :laughing:
+[paperdaily.rtfd.io](https://paperdaily.readthedocs.io/zh/latest/)
