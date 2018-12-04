@@ -8,15 +8,15 @@ Created by `Fan Yang <https://github.com/yangfly>`_
 
 .. toctree::
    :glob:
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: 通用物体
 
    notes/object/*
 
 .. toctree::
    :glob:
-   :maxdepth: 2
-   :caption: 人脸
+   :maxdepth: 1
+   :caption: 人脸相关
 
    notes/face/*
 

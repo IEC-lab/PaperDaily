@@ -39,16 +39,17 @@ release = u'master'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.doctest',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
+    'sphinx_markdown_tables',
+    # 'sphinx.ext.autodoc',
+    # 'sphinx.ext.autosummary',
+    # 'sphinx.ext.doctest',
+    # 'sphinx.ext.intersphinx',
+    # 'sphinx.ext.todo',
+    # 'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages',
+    # 'sphinx.ext.napoleon',
+    # 'sphinx.ext.viewcode',
+    # 'sphinx.ext.githubpages',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -268,7 +269,9 @@ def setup(app):
     app.add_config_value('recommonmark_config', {
             #'url_resolver': lambda url: github_doc_root + url,
             'auto_toc_tree_section': 'Contents',
+            'enable_math': True,
+            'enable_inline_math': True,
             'enable_eval_rst': True,
-            'enable_auto_doc_ref': True,
+            # 'enable_auto_doc_ref': True,
         }, True)
     app.add_transform(AutoStructify)

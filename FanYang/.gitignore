@@ -25,8 +25,8 @@
 # OSX dir files
 .DS_Store
 
-# paper files
-.paper
+# copyright
+# source/papers
 
 # build, distribute, and bins (+ python proto bindings)
 build

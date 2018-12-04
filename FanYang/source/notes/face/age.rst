@@ -92,6 +92,10 @@ Deep Regression Forests
     .. image:: .img/face_age_4.png
         :align: center
 
+  - **评价**：
+
+    想法比较新颖，实验效果也不错，好文章。
+
   - **参考**：
 
     #. `变分推断学习笔记123 <http://crescentmoon.info/2013/10/03/变分推断学习笔记1——概念介绍/>`_
