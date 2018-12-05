@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>年龄估计 &mdash; PaperDaily master 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="人脸检测" href="detection.html" />
+    <link rel="prev" title="目标检测" href="../object/detection.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/icon.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">通用物体</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../object/detection.html">目标检测</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../object/detection.html#refinddet">RefindDet</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">人脸</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">年龄估计</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deep-regression-forests">Deep Regression Forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">人脸检测</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="detection.html#srn">SRN</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PaperDaily</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>年龄估计</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/notes/face/age.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>年龄估计<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="deep-regression-forests">
+<h2>Deep Regression Forests<a class="headerlink" href="#deep-regression-forests" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>论文</strong>: “Deep Regression Forests for Age Estimation”, CVPR 2018, <a class="reference external" href="https://arxiv.org/abs/1712.07195">paper</a>, <a class="reference external" href="https://github.com/shenwei1231/caffe-DeepRegressionForests">code</a></p>
+</li>
+<li><p class="first"><strong>摘要</strong>:</p>
+<p>人脸图像的年龄估计是一个典型的非线性回归问题。这个问题的主要挑战在于人脸特征空间和年龄是异构：同龄人之间的巨大面部容貌差异性，以及老化模式的非固定性。本文提出一种用于年龄估计的端到端模型——深度回归森林 (Deep Regression Forests)。DRFs 将分支结点连接到卷积神经网络的全连接层，通过联合学习分支结点中的输入相关的数据划分和叶子结点上数据抽象来处理异构数据。这种联合学习采用交替策略：首先固定叶子节点，通过反向传播优化分支结点和 CNN 参数；然后固定分支结点，通过迭代由变分推断得到的步长自由和快速收敛的更新规则来优化叶子结点。我们在三个标准年龄估计基准上验证了提出了 DRFs，并在所有的基准上都取得了最先进的结果。</p>
+</li>
+<li><p class="first"><strong>相关方法</strong>：</p>
+<p>人脸年龄估计有两种子任务：精准估计时序生理年龄（如 15 岁），年龄段分类（如 青年，15~20）。本文针对的是精准年龄，问题的关键是学习面部特征和时序年龄间的非线性映射，而挑战在于两者间的异构性。</p>
+<img alt="../../_images/face_age_0.png" class="align-center" src="../../_images/face_age_0.png" />
+<p>相关方法及缺陷：</p>
+<ol class="arabic simple">
+<li>整体非线性核映射：因整体的异构性不可避免陷入偏差而过拟合。</li>
+<li>分治策略：分层回归、树回归；硬划分不能保证局部同构。</li>
+<li>序列回归（Rank）：二元子分类器，扩展性不够。</li>
+<li>标签分布学习：建模年龄相关性，性能不错，不适用于复杂数据。</li>
+</ol>
+<p>主要贡献：</p>
+<ol class="arabic simple">
+<li>模型结构：提出 DRFs(CNN+RF) 的端到端的联系学习模型，学习输入相关的分支划分和叶子概率分布。</li>
+<li>学习策略：基于变分推断，提供了 DRFs 中叶节点概率分布在优化过程中数学上的收敛保证。</li>
+<li>最佳性能：在多个年龄评估基础测试集上都达到了最先进的结果。</li>
+</ol>
+</li>
+<li><p class="first"><strong>深度回归森林</strong>：</p>
+<p>深度回归森林是一个生成模型，由卷积神经网络和随机森林组成的端到端模型，采用迭代训练来联合学习年龄空间的条件概率分布，以最终的年龄期望作为预测结果。</p>
+<a class="reference internal image-reference" href="../../_images/face_age_1.png"><img alt="../../_images/face_age_1.png" class="align-center" src="../../_images/face_age_1.png" style="width: 480.0px; height: 275.4px;" /></a>
+<p>如图，DRF 由 CNN 和 两颗决策树的随机森林组成。CNN 作为特征提取器将图像转化为高层视觉语意特征（红色），决策树分支结点（蓝色）根据 <strong>索引函数</strong> <span class="math notranslate nohighlight">\(\varphi\)</span> 采样视觉特征，采用 sigmoid 函数 <span class="math notranslate nohighlight">\(\sigma\)</span> 进行 <strong>软划分</strong>，每叶子结点（红色）表示年龄空间的 <strong>独立高斯分布</strong> <span class="math notranslate nohighlight">\(\pi_\iota (y)\)</span> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p><strong>索引函数</strong> <span class="math notranslate nohighlight">\(\varphi\)</span> 随机初始化以后就确定了，不需要学习。</p>
+<p>决策树差异在于：1. 索引函数 <span class="math notranslate nohighlight">\(\varphi\)</span> 不同，2. 叶节点的初始分布。</p>
+<p class="last">DRF 需要学习的参数：1. CNN 的权重 <span class="math notranslate nohighlight">\(\Theta\)</span>，2. 叶节点高斯分布参数（均值方差）。</p>
+</div>
+</li>
+<li><p class="first"><strong>年龄预测</strong>：</p>
+<ol class="arabic simple">
+<li>分支结点软划分：索引 CNN 高层视觉语意特征进行软划分 <span class="math notranslate nohighlight">\(s_n(x;\Theta)=\sigma(f_\varphi(n) (x;\Theta))\)</span></li>
+<li>叶节点概率：分支结点处根据软划分概率选择左右结点，满足独立事件乘法准则。</li>
+</ol>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[P(l|x;\Theta)=\prod_{n\in N}s_n(x;\Theta)^{1(l\in L_{n_l})}(1-s_n(x;\Theta))^{1(l\in L_{n_r})}\]</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>期望年龄分布：每个叶节点年龄分布的加权融合 <span class="math notranslate nohighlight">\(p(y|x,T)=\sum{l\in L}P(l|x;\Theta)\pi_\iota (y)\)</span></li>
+<li>预测期望：以融合年龄分布的期望作为最终预测结果 <span class="math notranslate nohighlight">\(\hat{y}=g(x;T)=\int y*p(y|x;T)dy\)</span></li>
+</ol>
+</li>
+<li><p class="first"><strong>交替训练</strong>：</p>
+<ol class="arabic simple">
+<li>损失函数：与常规生成模型一样，DRF 最终目标也是优化在训练集 <span class="math notranslate nohighlight">\(S\)</span> 上的最大似然估计，即最小化负对数似然</li>
+</ol>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[R(\pi,\Theta;S)=-\frac{1}{N}\sum_{i=1}^{N} log(p(y_i|x_i;T))\]</div>
+<div class="math notranslate nohighlight">
+\[(\pi^*,\Theta^*)=\mathop{argmin}_{\pi,\Theta}R(\pi,\Theta;S)\]</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>固定叶子结点参数 <span class="math notranslate nohighlight">\(\pi_\iota (y)\)</span>，分支结点共享参数 <span class="math notranslate nohighlight">\(\Theta\)</span>。因为分支结点使用Sigmoid 软划分，结点连接关系缺点，因此可以使用标准 BP 训练 CNN 权重。</li>
+<li>固定分支结点参数 <span class="math notranslate nohighlight">\(\Theta\)</span>，优化叶子结点参数模型 <span class="math notranslate nohighlight">\(\pi_\iota (y)\)</span>。在固定分支结点情况下，优化问题简化为期望年龄分布的最大似然的（受限）优化问题，可以采用变分推断（Variational Bounding）来迭代最小化损失。</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/face_age_2.png"><img alt="../../_images/face_age_2.png" class="align-center" src="../../_images/face_age_2.png" style="width: 392.5px; height: 288.5px;" /></a>
+</li>
+<li><p class="first"><strong>实验结果</strong>：</p>
+<p>MAE: 相对于 Ground Truth 的平均偏差。
+CS：</p>
+<img alt="../../_images/face_age_3.png" class="align-center" src="../../_images/face_age_3.png" />
+</li>
+<li><p class="first"><strong>参考</strong>：</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://arxiv.org/abs/1712.07195">变分推断学习笔记123</a></li>
+<li><a class="reference external" href="https://github.com/IEC-lab/PaperDaily/blob/master/ChangLiu/AgeEstimation.md">更多年龄估计论文 by ChangLiu</a></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="detection.html" class="btn btn-neutral float-right" title="人脸检测" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../object/detection.html" class="btn btn-neutral" title="目标检测" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Fan Yang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

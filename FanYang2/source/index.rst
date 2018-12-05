@@ -2,16 +2,25 @@
 
 
 每日一读
-========
+======================================
 
-这里仅收纳精读的论文笔记。
+Created by `Fan Yang <https://github.com/yangfly>`_
 
 .. toctree::
-   :maxdepth: 2
+   :glob:
+   :maxdepth: 1
+   :caption: 通用物体
 
-   notes/attribute/index
-   notes/detect/index
-   notes/system/index
+   notes/object/*
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :caption: 人脸相关
+
+   notes/face/*
+
+
 
 .. Indices and tables
 .. ==================

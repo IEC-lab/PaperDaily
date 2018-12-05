@@ -26,7 +26,7 @@
 .DS_Store
 
 # copyright
-# source/_static/papers
+# source/papers
 
 # build, distribute, and bins (+ python proto bindings)
 build
