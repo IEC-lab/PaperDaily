@@ -29,13 +29,13 @@
 
 ## Result
 
-![](images\result.png)
+![](images/result.png)
 
 ​	在很多benchmarks上用到了我们的KBQA。图为QALD-5的结果。结果表明，KBQA具有最高的准确度。由于KBQA只回答二元事实型问题，因此召回率相对较低。如果我们只考虑二元事实型问答，召回率能上升到0.67。
 
 ​	即使在一个不以二元事实型问题为主的数据集中（如WEBQUESTIONS，QALD-3），KBQA也可以作为混合问答系统的一个完美组件。
 
-![](images\result on hybrid.png)
+![](images/result on hybrid.png)
 
 ​	我们这样构建混合问题系统：一个问题过来，首先提交给我们的KBQA系统。如果KBQA系统不能回答，这意味着这个问题很可能不是二元事实型问题。然后，我们再将这个问题提交给baseline系统。
 
