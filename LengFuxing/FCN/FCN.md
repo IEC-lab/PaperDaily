@@ -1,4 +1,4 @@
-# FCN
+﻿# FCN
 [Fully Convolutional Networks for Semantic Segmentation](https://arxiv.org/pdf/1411.4038)
 
 ## 目录
@@ -24,7 +24,7 @@
 
 ### 上采样
 - 获得与输入一样的尺寸，采取skip connection，连接pool3、pool4、pool5，提高精度
-![](./img/2.jpg)
+![](./img/2.JPG)
 
 
 
