@@ -29,21 +29,21 @@ ECCV2016，[PDF](https://arxiv.org/abs/1608.00859v1) ，[Models and code](https:
 
 ## Network Architecture
 
-![1](image\TSN\1.png)
+![1](image\1.png)
 
 对于一个输入的视频，被分成K个段（segment），实验中设置段的数量为 3。从每个段中随机地选择一个片段（short snippet）。将选择的片段通过two-stream卷积神经网络得到不同片段的类别分数，最后将它们融合。不同片段的类别得分采用段共识函数（The segmental consensus function）进行融合来产生段共识（segmental consensus），这是一个视频级别的预测。然后对所有模式的预测使用标准分类交叉熵损失（standard cross-entropy loss）融合产生最终的预测结果（这种方法大大降低了计算开销），采用随机梯度下降法(SGD)训练网络
 
 网络对片段序列的建模如下，Tk表示随机选择的片段，F函数表示卷积网络，G为聚合函数，H为softmax函数
 
-![2](image\TSN\2.png)
+![2](image\2.png)
 
 **网络的损失函数**如下（standard categorical cross-entropy），C表示类别数，yi是ground truth
 
-![3](image\TSN\3.png)
+![3](image\3.png)
 
 在反向传播过程中梯度如下
 
-![4](image\TSN\4.png)
+![4](image\4.png)
 
 ### 网络细节
 
@@ -51,7 +51,7 @@ ECCV2016，[PDF](https://arxiv.org/abs/1608.00859v1) ，[Models and code](https:
 
 2. two-stream卷积神经网络只将RGB图像和光流分别作为时间和空间流的输入。为了增强网络的泛化能力，作者在原来基础上提出增加帧差图像和warped光流，四种模式图像如下
 
-   ![5](image\TSN\5.png)
+   ![5](image\5.png)
 
 ### 网络训练
 
@@ -79,7 +79,7 @@ ECCV2016，[PDF](https://arxiv.org/abs/1608.00859v1) ，[Models and code](https:
 
 作者对四种方案进行实验：（1）从零开始训练；（2）仅仅预训练空间流；（3）采用交叉输入模式预训练；（4）交叉输入模式预训练和部分BN dropout结合。结果总结在下表1中
 
-![6](image\TSN\6.png)
+![6](image\6.png)
 
 由上表可以看出，从零开始训练比基线算法（two-stream卷积网络）的表现要差很多，证明需要重新设计训练策略来降低过拟合的风险，特别是针对空间网络。对空间网络进行预训练、对时间网络进行交叉输入模式预训练，取得了比基线算法更好的效果。之后还在训练过程中采用部分BN dropout的方法，将识别准确率提高到了92.0%
 
@@ -87,7 +87,7 @@ ECCV2016，[PDF](https://arxiv.org/abs/1608.00859v1) ，[Models and code](https:
 
 在上文中提出了两种新的模式：RGB差异和扭曲的光流场。不同输入模式的表现比较如下表2中
 
-![7](image\TSN\7.png)
+![7](image\7.png)
 
 由上表可以看出，首先，RGB图像和RGB差异的结合可以将识别准确率提高到87.3%，这表明两者的结合可以编码一些补充信息。光流和扭曲光流的表现相近（87.2% vs 86.9%），两者融合可以提高到87.8%。四种模式的结合可以提高到91.7%。由于RGB差异可以描述相似但不稳定的动作模式，作者还评估了其他三种模式结合的表现（92.3% vs 91.7%）。作者推测光流可以更好地捕捉运动信息，而RGB差异在描述运动时是不稳定的。在另一方面，RGB差异可以当作运动表征的低质量、高速的替代方案
 
@@ -95,11 +95,11 @@ ECCV2016，[PDF](https://arxiv.org/abs/1608.00859v1) ，[Models and code](https:
 
 段共识函数被定义为它的聚合函数 g，这里评估 g 的三种形式：（1）最大池化；（2）平均池化；（3）加权平均。实验结果见表3中
 
-![8](image\TSN\8.png)
+![8](image\8.png)
 
 我们发现平局池化函数达到最佳的性能。因此在接下来的实验中选择平均池化作为默认的聚合函数。然后比较了不同网络架构的表现，结果总结在表4
 
-![9](image\TSN\9.png)
+![9](image\9.png)
 
 具体来说，比较了3个非常深的网络架构：BN-Inception、GoogLeNet和VGGNet-16。在这些架构中，BN-Inception表现最好，故选择它作为TSN的卷积网络架构
 
@@ -107,7 +107,7 @@ ECCV2016，[PDF](https://arxiv.org/abs/1608.00859v1) ，[Models and code](https:
 
 与其他视频行为识别算法在HMDB51和UCF101数据集上的对比，效果还是比较明显的，结果如下
 
-![10](image\TSN\10.png)
+![10](image\10.png)
 
 ## Conclusion
 
