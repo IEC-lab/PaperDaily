@@ -4,4 +4,4 @@
 
 [AlexNet](./AlexNet.md)
 
-[Temporal Segment Networks](./Temporal Segment Networks.md)
+[Temporal Segment Networks](https://github.com/IEC-lab/PaperDaily/blob/master/wanxin/Temporal%20Segment%20Networks.md)
