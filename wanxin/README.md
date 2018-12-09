@@ -4,4 +4,4 @@
 
 [AlexNet](./AlexNet.md)
 
-[TSN](./Temporal Segment Networks.md)
+[Temporal Segment Networks](./Temporal Segment Networks.md)
