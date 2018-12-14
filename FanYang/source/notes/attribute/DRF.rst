@@ -36,6 +36,7 @@
 深度回归森林是一个生成模型，由卷积神经网络和随机森林组成的端到端模型，采用迭代训练来联合学习年龄空间的条件概率分布，以最终的年龄期望作为预测结果。
 
 .. image:: /_static/img/Attribute_DRF_1.png
+  :align: center
   :scale: 60
 
 如图，DRF 由 CNN 和 两颗决策树的随机森林组成。CNN 作为特征提取器将图像转化为高层视觉语意特征（红色），决策树分支结点（蓝色）根据 **索引函数** :math:`\varphi` 采样视觉特征，采用 sigmoid 函数 :math:`\sigma` 进行 **软划分**，每叶子结点（红色）表示年龄空间的 **独立高斯分布** :math:`\pi_\iota (y)` 。
@@ -80,15 +81,18 @@
 #. 固定分支结点参数 :math:`\Theta`，优化叶子结点参数模型 :math:`\pi_\iota (y)`。在固定分支结点情况下，优化问题简化为期望年龄分布的最大似然的（受限）优化问题，可以采用变分推断（Variational Bounding）来迭代最小化损失。
 
 .. image:: /_static/img/Attribute_DRF_2.png
-  :scale: 50
+   :align: center
+   :scale: 50
 
 实验结果
 --------
 目前常用的年龄估计评价指标包括平均绝对误差 (MAE) 和累积指数 (CS)。
 
 .. image:: /_static/img/Attribute_DRF_3.png
+   :align: center
 
 .. image:: /_static/img/Attribute_DRF_4.png
+   :align: center
 
 评价
 -----

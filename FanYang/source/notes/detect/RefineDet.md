@@ -25,7 +25,7 @@
 
 RefineDet 是一种改进的单段检测器框架，类似于 SSD，通过分类和回归固定数量的锚框，接以非极大抑制来预测最终输出。RefineDet 增加了两个内联模块：锚框精炼模块（anchor refinement module, ARM）和物品检测模块（object detection module, ODM），并通过传输连接块（TCB）共享特征。
 
-![](/_static/img/Detect_RefineDet_0.png)
+<center>![](/_static/img/Detect_RefineDet_0.png)</center>
 
 RefineDet 三大核心部分：
 
@@ -44,7 +44,7 @@ RefineDet 三大核心部分：
     p1 = ReLU(p1, name='P1_relu')
   ```
 
-  ![](/_static/img/Detect_RefineDet_1.png)
+  <center>![](/_static/img/Detect_RefineDet_1.png)</center>
 
 2. 两段级联回归：首先 ARM 对每个规则的锚框进行初步回归，然后将每个调整后的锚框指定到对应的 ODM 特征，ODM 在更高质量的初始锚框上，进一步精炼。通过两段回归策略，RefineDet 可以比单段检测器获得更好的定位精度，特别是对小目标等比较有挑战的场景。
 
@@ -56,10 +56,10 @@ RefineDet 三大核心部分：
 - 主干网络：在 ILSVRC CLS_LOC 数据集上预训练的 VGG16 和 ResNet101。
 - 锚框配置：尺寸 (8,16,32,64) 满足 4 倍步长，长宽比 (0.5, 1.0, 2.0)。
 - 锚框匹配：1. 对于每个标注框，匹配最大的锚框；2. 匹配大于阈值 0.5 的锚框。
-- 难负例挖掘：在 ARM 和 ODM 中，对于负锚框排序并去损失较大者，保证正负比例为 1:3。
+- 难负例挖掘：在 ARM 和 ODM 中，对于负锚框排序并取损失较大者，保证正负比例为 1:3。
 - 损失函数：ARM 二元交叉熵， ODM softmax，smooth-L1 损失。 
-  ![](/_static/img/Detect_RefineDet_2.png)
-- 优化：初始化 VGG：“xavier”，ResNet101：Gaussian。 batch-size=32，初始学习率 0.001
+  <center>![](/_static/img/Detect_RefineDet_2.png)</center>
+- 优化：初始化 VGG：“xavier”，ResNet101：Gaussian。batch-size=32，初始学习率 0.001
 - 推理：ARM 滤掉简单背景锚框，ODM 输出 top-400，经过 NMS-0.45 输出最终 top-200。
 
 ## 实验
@@ -69,11 +69,11 @@ RefineDet 三大核心部分：
 
 从实验结果可以看出，确实实现了论文推崇的又快又好的效果，特别是两阶段回归，提升效果显著。
 
-![](/_static/img/Detect_RefineDet_3.png)
+<center>![](/_static/img/Detect_RefineDet_3.png)</center>
 
-![](/_static/img/Detect_RefineDet_4.png)
+<center>![](/_static/img/Detect_RefineDet_4.png)</center>
 
-![](/_static/img/Detect_RefineDet_5.png)
+<center>![](/_static/img/Detect_RefineDet_5.png)</center>
 
-![](/_static/img/Detect_RefineDet_6.png)
+<center>![](/_static/img/Detect_RefineDet_6.png)</center>
   
