@@ -117,3 +117,117 @@ Convolutional Neural Networks (CNNs) have been widely used in computer vision ta
 ## Summary
 
 在center loss的基础上增加了额外的约束，使学习到的特征比center loss具有更大的类间距离和更小的类内距离。
+
+
+
+# Bag of Tricks for Image Classification with Convolutional Neural Networks
+
+**paper**:[Bag of Tricks for Image Classification with Convolutional Neural Networks](http://arxiv.org/abs/1812.01187v1)
+
+**code**:-
+
+**Author**:
+
+**time**:2018
+
+## Abstract
+
+Much of the recent progress made in image classification research can be credited to training procedure refinements, such as changes in data augmentations and optimization methods. In the literature, however, most refinements are either briefly mentioned as implementation details or only visible in source code. In this paper, we will examine a collection of such refinements and empirically evaluate their impact on the final model accuracy through ablation study. We will show that, by combining these refinements together, we are able to improve various CNN models significantly. For example,we raise ResNet-50's top-1 validation accuracy from 75.3% to 79.29% on ImageNet. We will also demonstrate that improvement on image classification accuracy leads to better transfer learning performance in other application domains such as object detection and semantic segmentation.
+
+**翻译**：近期图像分类领域取得的许多进展可以归功于训练过程的改进，比如图像增强的和优化方法的改进。然而在现在的文献中，大多数的改进要么是在实现细节中简单的提及，或者仅在源码中可见。在这篇论文中，我们将研究这些改进的方法，并通过消融研究凭经验评估它们对最终模型准确性的影响，我们将展示，通过将这些改进结合在一起，能够显著改进各种CNN模型，比如，我们在ImageNet上将ResNet-50的top-1验证集准确率从75.3%提高到79.29%。我们还将证明，图像分类准确率的提高可以在其他应用领域比如对象检测和语义分割中实现更好的迁移学习性能。
+
+## Contribution
+
+**Some tricks for training:**
+
+- Large-batch training
+
+  - Linear scaling learning rate
+
+    使用大的batch size，可能会减慢训练速度，对于收敛来说，收敛速度随着batch size的增加而变慢，换句话说，对于相同的迭代次数，用大的batch size比小的batch size 训练的模型验证集精度要低一些。He等人选择0.1作为batch_size=256时初始学习率，所以如果对于batch_size=b的，初始学习率可以选择0.1xb/256。
+
+  - Learning rate warmup
+
+    gradual warmup strategy:将学习率从0线性增加到初始学习率，比如，假设我们使用前m个batch的样本来预热，初始学习速率设为η ,那么在第i个batch的时候(0<=i<=m)，学习率为iη /m。
+
+- Low-precision
+
+  神经网络一般使用FP32（float point 32)训练，所有的数据都是以FP32格式存储，然而现在新的硬件可能对更低精度的数据类型增强了算术逻辑单元（也就是说，FP16要比FP32训练更快）尽管具有性能优势，但是精度降低后，范围更窄了，使得结果更可能超出范围，然后扰乱训练进度。建议存储所有参数和激活单元用FP16，并使用FP16计算梯度，同时，所有参数在FP32中都有一个副本用于参数更新，此外，将损失乘以一个标量可以更好的对齐使用FP16的梯度范围。
+
+- Model tweaks
+
+  Model tweak是对网络体系结构的微小调整，例如改变特定卷积层的步长，这种调整通常几乎不会改变计算复杂性，但可能对模型的准确率具有不可忽略的影响。
+
+- Trainging refinement
+
+  - Cosine learning rate decay
+  - Label smoothing
+  - Knowledge distilling
+  - Mix-up training
+
+## Summary
+
+研究了十几个训练卷积神经网络的技巧，这些技巧包括对网络结构、数据预处理、损失函数和学习速率的调整，将所有这些堆叠在一起可以显著提高准确率。
+
+
+
+# Deep Neural Decision Trees
+
+**paper**:[[Deep Neural Decision Trees](https://arxiv.org/abs/1806.06988)](http://arxiv.org/abs/1812.01187v1)
+
+**code**:https://github.com/wOOL/DNDT
+
+**Author**:Yongxin Yang, Irene Garcia Morillo, Timothy M. Hospedales
+
+**time**:WHI 2018
+
+## Abstract
+
+Deep neural networks have been proven powerful at processing perceptual data, such as images and audio. However for tabular data, tree-based models are more popular. A nice property of tree-based models is their natural interpretability. In this work, we present Deep Neural Decision Trees (DNDT) – tree models realised by neural networks. A DNDT is intrinsically interpretable, as it is a tree. Yet as it is also a neural network (NN), it can be easily implemented in NN toolkits, and trained with gradient descent rather than greedy splitting. We evaluate DNDT on several tabular datasets, verify its efficacy, and investigate similarities and differences between DNDT and vanilla decision trees. Interestingly, DNDT self-prunes at both split and feature-level. 
+
+**翻译**：已经证明了深度神经网络在处理感知数据（例如图像和音频）方面是强大的。但是对于表格数据，基于树的模型应用更多，基于树的模型的一个很好特性是它们的自然可解释性，在这项工作中，我们提出了深度神经决策树（DNDT）--通过神经网络实现的树模型网络。DNDT本质是可解释的，因为它是一棵树，然而，因为它也是一个神经网络，可以很容易地在NN toolkit中实现，并且使用梯度下降训练而不是贪婪地分裂。我们评估了几个DNDT地表格数据集，验证其功效，并研究DNDT之间地相似性和差异性，有趣地是，DNDT的分裂和特征级别地自我修剪。
+
+![Q图片2018121311161](./images/QQ图片20181213111619.png)
+
+红色表示训练时的变量，黑色表示常量
+
+![Q图片2018121311163](./images/QQ图片20181213111634.png)
+
+相同的网络用传统决策树展示，分数表示随机选择的6个事例的分类路线。
+
+## Contribution
+
+...还没看完，待续
+
+## Summary
+
+和deep neural decision forest(Deep-NDF)不同的方面有：
+
+1. DNDT不是使用交替优化策略优化结构学习（splitting)和参数学习(score matrix)，相反，直接使用反向传播来学习它们
+2. 不会将分割限制为二进制（左或右），因为我们应用可以将节点分成多个（>=2)叶子的可微分的bining functioin
+3. 我们专门为可解释性设计了我们的模型，特别是对表格数据的应用，我们可以解释每个输入特征，相比之下，NDF种的模型被设计用于预测性能并应用于原始图像数据，一些设计决策使它们不太适用于表格数据
+
+
+
+> 模板
+>
+> # 标题
+>
+> **paper**:
+>
+> **code**:
+>
+> **Author**:                              
+>
+> **time**: 
+>
+> ## Abstract
+>
+> 
+>
+> **翻译**:
+>
+> ## Contribution
+>
+> ## Summary
+
