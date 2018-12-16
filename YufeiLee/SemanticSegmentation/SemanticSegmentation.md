@@ -16,7 +16,7 @@
 
 分类网络通常会在最后添加全连接层，会将原来的二维图片（矩阵）压缩成一维，从而训练出一维标量作为分类标签。而图像语义分割需要输出分割图（二维），因此将全连接层换成卷积层。
 
-![](C:/Users/14451/Desktop/img/1.png)
+![](img/1.png)
 
 **上采样**
 
@@ -28,7 +28,7 @@ caffe中，使用 **im2col**来将图片转为矩阵，使用**GEMM**来计算�
 
 直接将全卷积后的结果上采样后得到的结果很粗糙，所以，将不同池化层的结果进行上采样，结合这些结果来优化输出。pool4后面添加1x1卷积，产生附加的类别预测，将输出和在fc7经过2X上采样后的预测融合，最后用stride=16的上采样将预测变为原图像大小。把这种网结构称为FCN-16s。继续融合pool3和一个融合了 pool4和conv7的2X上采样预测，建立FCN-8s网络，融合完性能显著提升。
 
-![](C:/Users/14451/Desktop/img/2.png)
+![](img/2.png)
 
 如上图所示，对原图像进行卷积conv1、pool1后原图像缩小为1/2；之后对图像进行第二次conv2、pool2后图像缩小为1/4；接着继续对图像进行第三次卷积操作conv3、pool3缩小为原图像的1/8，此时保留pool3的featureMap；接着继续对图像进行第四次卷积操作conv4、pool4，缩小为原图像的1/16，保留pool4的featureMap；最后对图像进行第五次卷积操作conv5、pool5，缩小为原图像的1/32，然后把原来CNN操作中的全连接变成卷积操作conv6、conv7，图像的featureMap数量改变但是图像大小依然为原图的1/32,此时进行32倍的上采样可以得到原图大小,这个时候得到的结果就是叫做FCN-32s.
 
@@ -36,11 +36,11 @@ caffe中，使用 **im2col**来将图片转为矩阵，使用**GEMM**来计算�
 
 之后在FCN-16s的基础上进行fine tuning,把pool3层和2倍上采样的pool4层和4倍上采样的conv7层加起来,进行一个8倍的上采样,得到的结果就是FCN-8s.
 
-![](C:/Users/14451/Desktop/img/3.png)
+![](img/3.png)
 
 ## Experiment
 
-![](C:/Users/14451/Desktop/img/4.png)
+![](img/4.png)
 
 **sth good**: [FCN解析1](https://blog.csdn.net/qq_36269513/article/details/80420363)
 
@@ -61,11 +61,11 @@ SegNet的主要动机是场景理解应用.因此，它在设计的时候保证�
 
 encoder-decoder结构，encoder由VGG16的前13层卷积层组成，每个encoder层对应一个decoder层，最终解码器输出被送到多级soft max分类器，每个像素输出类概率
 
-![](C:/Users/14451/Desktop/img/s1.png)
+![](img/s1.png)
 
 最大池化可以实现在输入图像上进行小的空间位移时保持平移不变性。**连续的下采样导致了在输出的特征图上，每一个像素都重叠着着大量的输入图像中的空间信息**。对于图像分类任务，多层最大池化和下采样由于平移不变性可以获得较好的鲁棒性，但导致了特征图大小和空间信息的损失。**图像分割任务中边界划分至关重要，而这么多有损边界细节的图像表示方法显然不利于分割**。因此，在进行下采样之前，**在编码器特征映射中获取和存储边界信息是十分重要的**。如果推理过程中的内存不受约束，则所有编码器特征映射(在下采样后)都可以存储。在实际应用中，情况通常不是这样，因此我们提出了一种更有效的方法来存储这些信息。它只存储最大池化索引，即存储每个池化窗口中最大特征值的位置，用于每个编码器特征映射。
 
-![](C:/Users/14451/Desktop/img/s2.png)
+![](img/s2.png)
 
 对比SegNet和FCN实现Decoder的过程。SegNet保留pooling时的位置信息，upsampling时直接将数据放在原先的位置,其他位置补0，而FCN采用transposed convolutions+双线性插值，每一个像素都是运算后的结果。
 
@@ -75,11 +75,11 @@ encoder-decoder结构，encoder由VGG16的前13层卷积层组成，每个encode
 
 使用两个数据集来训练和测试SegNet：CamVid road scene segmentation（对自动驾驶有实际意义）和SUN RGB-D indoor scene segmentation（对AR有实际意义）
 
-![](C:/Users/14451/Desktop/img/s3.png)
+![](img/s3.png)
 
 ### Result
 
-![](C:/Users/14451/Desktop/img/segnet1.gif)
+![](img/segnet1.gif)
 
 
 
@@ -132,13 +132,13 @@ DCNNs近期在高级视觉任务中表现出非常好的性能，比如图像分
 
 由于普通下采样（最大池化）方法导致分辨率下降，局部信息丢失，想去掉池化，但是池化能使每个像素都有较大的感受野并且减少图像尺寸，因此引入空洞卷积，不进行下采样又能保证大的感受野。
 
-![](C:/Users/14451/Desktop/img/deeplabv1-1.png)
+![](img/deeplabv1-1.png)
 
 [花样卷积示意](https://github.com/vdumoulin/conv_arithmetic)
 
 空洞卷积 3x3 kernel dilation rate=2
 
-![](C:/Users/14451/Desktop/img/dilation.gif)
+![](img/dilation.gif)
 
 VGG论文将7x7卷积改为3个3x3小卷积，这样做的主要目的是在保证具有相同感知野的条件下，提升了网络的深度，在一定程度上提升了神经网络的效果，同时减少了参数量。
 
@@ -152,7 +152,7 @@ VGG论文将7x7卷积改为3个3x3小卷积，这样做的主要目的是在保�
 
 4.**多尺度预测**：将前四个最大池化层中的每一个输入图像和输出附加到一个两层MLP，特征图连接到主网络的最后一层特征图，这四个预测结果与最终模型输出拼接（concatenate）到一起，相当于多了128*5=640个channel。通过640个通道增强了馈送到分类层的聚合特征图，我们只调整新添加的权重，保留其他网络参数学习到的值。
 
-![](C:/Users/14451/Desktop/img/deeplabv1-3.png)
+![](img/deeplabv1-3.png)
 
 5.**网络结构**
 
@@ -162,7 +162,7 @@ VGG论文将7x7卷积改为3个3x3小卷积，这样做的主要目的是在保�
 
 ## Experiment
 
-![](C:/Users/14451/Desktop/img/deeplabv1-2.png)
+![](img/deeplabv1-2.png)
 
 
 
@@ -181,7 +181,7 @@ VGG论文将7x7卷积改为3个3x3小卷积，这样做的主要目的是在保�
 
 将DCNN应用在语义分割上，主要有三个问题：降低特征分辨率、多个尺度上存在对象、由于DCNN的内在不变性 定位精度变低。第一个问题因为DCNN连续的最大池化和下采样组合引起的空间分辨率下降，为了解决这个问题，deeplabv2在最后几个最大池化层中除去下采样，使用空洞卷积以分高的采样密度计算特征映射。第二个问题因为在多尺度上存在物体，解决办法是将一张图缩放不同版本，汇总特征或最终预测map得到结果，但这个增加了计算特征响应，需要大量存储空间，受到空间金字塔池化（SPP）启发，提出了一个类似结构，在给定的输入上以不同采样率的空洞卷积并行采样，相当于以多个比例捕捉图像的上下文，称为空洞空间金字塔池化（ASPP）模块。第三个问题涉及到对象分类要求空间变换不变性，这影响了DCNN的空间定位精度，解决办法是在计算最终分类结果时使用跳跃层，将前面的特征融合到一起。
 
-![](C:/Users/14451/Desktop/img/v2-1.png)
+![](img/v2-1.png)
 
 - 输入经过改进的DCNN(带空洞卷积和ASPP模块)得到粗略预测结果，即`Aeroplane Coarse Score map`
 - 通过双线性插值扩大到原本大小，即`Bi-linear Interpolation`
@@ -195,17 +195,17 @@ DeepLabv2的主要优点在于：
 
 本文DeepLabv2是在DeepLabv1的基础上做了改进，基础层由VGG16换成了更先进的ResNet，添加了多尺度和ASPP模块技术得到了更好的分割结果。
 
-![](C:/Users/14451/Desktop/img/v2-2.png)
+![](img/v2-2.png)
 
 
 
 ### Experiment
 
-![](C:/Users/14451/Desktop/img/v2-3.png)
+![](img/v2-3.png)
 
 
 
-![](C:/Users/14451/Desktop/img/v2-4.png)
+![](img/v2-4.png)
 
 
 
