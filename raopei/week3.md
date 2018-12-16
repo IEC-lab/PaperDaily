@@ -19,3 +19,7 @@ the potential of the framework through qualitative and quantitative evaluation o
 the generated samples.
 
 ### Contribution
+
+利用一个生成器G和一个鉴别器D，G输入一个噪声样本，然后把它包装成一个逼真的样本，也就是输出，
+D来判断输入的样本是真是假。单独交替迭代训练，使两者都得到训练，G希望以假乱真，使D无法分辨
+输出是否为真，D则希望去伪存真，可以准确分辨真样本集和G生成的样本集，这就是对抗训练的思想。
