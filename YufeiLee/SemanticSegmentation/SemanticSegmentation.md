@@ -16,7 +16,8 @@
 
 分类网络通常会在最后添加全连接层，会将原来的二维图片（矩阵）压缩成一维，从而训练出一维标量作为分类标签。而图像语义分割需要输出分割图（二维），因此将全连接层换成卷积层。
 
-![](./img/1.png)
+<div align="center"><img src="img/1.png"></src>
+</div>
 
 **上采样**
 
@@ -36,11 +37,13 @@ caffe中，使用 **im2col**来将图片转为矩阵，使用**GEMM**来计算�
 
 之后在FCN-16s的基础上进行fine tuning,把pool3层和2倍上采样的pool4层和4倍上采样的conv7层加起来,进行一个8倍的上采样,得到的结果就是FCN-8s.
 
-![](./img/3.png)
+<div align="center"><img src="img/3.png"></src>
+</div>
 
 ## Experiment
 
-![](./img/4.png)
+<div align="center"><img src="img/4.png"></src>
+</div>
 
 **sth good**: [FCN解析1](https://blog.csdn.net/qq_36269513/article/details/80420363)
 
@@ -138,7 +141,8 @@ DCNNs近期在高级视觉任务中表现出非常好的性能，比如图像分
 
 空洞卷积 3x3 kernel dilation rate=2
 
-![](./img/dilation.gif)
+<div align="center"><img src="img/dilation.gif"></src>
+</div>
 
 VGG论文将7x7卷积改为3个3x3小卷积，这样做的主要目的是在保证具有相同感知野的条件下，提升了网络的深度，在一定程度上提升了神经网络的效果，同时减少了参数量。
 
@@ -203,11 +207,13 @@ DeepLabv2的主要优点在于：
 
 一维情况：
 
-![](./img/v2-2.png)
+<div align="center"><img src="img/v2-2.png"></src>
+</div>
 
 二维情况：
 
-![](./img/v2-5.png)
+<div align="center"><img src="img/v2-5.png"></src>
+</div>
 
 上分支：首先下采样将分辨率降低2倍，做卷积，再上采样得到结果，本质上只是在原图片的1/4内容上做卷积响应。下分支：将全分辨率图像做空洞卷积（采样率为2.核大小与上面卷积核相同），直接得到结果。这样可以计算出整张图片的响应，效果更好。
 
