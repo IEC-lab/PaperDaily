@@ -7,3 +7,4 @@
 - 2018.12.9 [Bag of Tricks for Image Classification with Convolutional Neural Networks](./Triain_Optmize/Bag_of_Tricks_for_Image_Classification_with_Convolutional_Neural_Networks.md)
 - 2018.12.11 [Learning Residual Images for Face Attribute Manipulation](./Face/Learning-Residual-Images-for-Face-Attribute-Manipulation/README.md)
 - 2018.12.14 [CondenseNet](./Net/CondenseNet/README.md)
+- 2018.12.18 [Deep Identity-Aware Transferof Facial Attributes](./Face/Deep_Identity-Aware_Transferof_Facial_Attributes/README.md)
