@@ -8,3 +8,4 @@
 - 2018.12.11 [Learning Residual Images for Face Attribute Manipulation](./Face/Learning-Residual-Images-for-Face-Attribute-Manipulation/README.md)
 - 2018.12.14 [CondenseNet](./Net/CondenseNet/README.md)
 - 2018.12.18 [Deep Identity-Aware Transferof Facial Attributes](./Face/Deep_Identity-Aware_Transferof_Facial_Attributes/README.md)
+- 2018.12.19 [Stacked Hourglass Networks for Human Pose Estimation_CVPR2016](./Human_Pose/Stacked_Hourglass_Networks_for_Human_Pose_Estimation/README.md)
