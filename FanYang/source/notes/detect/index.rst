@@ -16,7 +16,15 @@
 
 - DSFD: Dual Shot Face Detector
    "DSFD: Dual Shot Face Detector"
-    不推荐，虽然目前性能最好，但提升主要来自于使用复杂网络。   
+    不推荐，虽然目前性能最好，但提升主要来自于使用复杂网络。
+
+- FaceBoxes: SSD-style 的快速检测器 
+   "FaceBoxes: A CPU Real-time Face Detector with High Accuracy"
+    最小脸 20px，20FPS@CPU，125FPS@GPU。
+
+- DCFPN：FPN-style 的快速检测器
+   "Detecting Face with Densely Connected Face Proposal Network"
+    最小脸 40px，30FPS@CPU, 250FPS@GPU。
 
 **目录**
 
@@ -24,5 +32,6 @@
    :maxdepth: 1
     
    RefineDet
+   fast_fd
    SRN
    DSFD

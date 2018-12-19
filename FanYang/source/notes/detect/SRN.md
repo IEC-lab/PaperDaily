@@ -2,7 +2,7 @@
 
 ## 论文
 
-"Selective Refinement Network for High Performance Face Detection", CVPR 2018, [paper](https://arxiv.org/pdf/1809.02693)
+"Selective Refinement Network for High Performance Face Detection", AAAI 2019, [paper](https://arxiv.org/pdf/1809.02693)
 
 ## 摘要
 

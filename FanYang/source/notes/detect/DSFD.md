@@ -59,3 +59,8 @@
 > 在 ImageNet 上分类越高的，不一定在 Wider Face 上越好。
 
 
+## 引用
+
+[1]: [Arxiv 2017: Feature Agglomeration Networks for Single Stage Face Detection](https://arxiv.org/pdf/1712.00721)<br/>
+[2]: [ECCV 2017: Pyramidbox: A context-assisted single shot face detector](https://arxiv.org/pdf/1803.07737)<br/>
+[3]: [ICCV 2017: S3FD: Single Shot Scale-invariant Face Detector](https://arxiv.org/pdf/1708.05237)<br/>
