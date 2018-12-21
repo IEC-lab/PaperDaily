@@ -8,7 +8,7 @@
 
 ### 摘要
 
-虽然在人脸检测方面已经取得了巨大进步，但如何在 CPU 的受限计算资源下实现精准的实时人脸检测，依然是一个开放性的挑战难题。为了应对这一挑战，我们提出了一种新的人脸检测器：FaceBoxes，在速度和准确性方面都表现出色。具体来说，我们的方法具有轻量级但功能强大的网络结构，包括快速消化卷积层（Rapidly Digested ConvolutionalLayers, RDCL）和多尺度卷积层（Multiple Scale Convolutional Layers, MSCL）。RDCL旨在使 FaceBoxes 能够在 CPU 上实现实时检测速度。MSCL 旨在丰富感受野并散布各层上的锚框，以处理各种尺度的人脸。此外，我们提出了一种新的锚点致密化策略，使不同类型的锚点在图像上具有相同的密度，从而显着提高了小脸部的召回率。因此，对于 VGA 分辨率的图片，探测器在单个 CPU 核心上能以 20 FPS 运行，在 GPU 上能以 125 FPS 运行。而且，FaceBoxes 的检查速度不随人脸个数变化。我们全面评估了这种方法，并在多个人脸检测基准数据集（包括 AFW, PASCAL face 和 FDDB）上达到了最先进的检测性能。
+虽然在人脸检测方面已经取得了巨大进步，但如何在 CPU 的受限计算资源下实现精准的实时人脸检测，依然是一个开放性的挑战难题。为了应对这一挑战，我们提出了一种新的人脸检测器：FaceBoxes，在速度和准确性方面都表现出色。具体来说，我们的方法具有轻量级但功能强大的网络结构，包括快速消化卷积层（Rapidly Digested Convolutional Layers, RDCL）和多尺度卷积层（Multiple Scale Convolutional Layers, MSCL）。RDCL旨在使 FaceBoxes 能够在 CPU 上实现实时检测速度。MSCL 旨在丰富感受野并散布各层上的锚框，以处理各种尺度的人脸。此外，我们提出了一种新的锚点致密化策略，使不同类型的锚点在图像上具有相同的密度，从而显着提高了小脸部的召回率。因此，对于 VGA 分辨率的图片，探测器在单个 CPU 核心上能以 20 FPS 运行，在 GPU 上能以 125 FPS 运行。而且，FaceBoxes 的检查速度不随人脸个数变化。我们全面评估了这种方法，并在多个人脸检测基准数据集（包括 AFW, PASCAL face 和 FDDB）上达到了最先进的检测性能。
 
 ### 回顾
 
@@ -47,7 +47,7 @@ MTCNN<sup>[1]</sup> 等级联检测器方法三大弊端：
 ### 引用
 
 [1]: [ISIL 2016: Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks](https://kpzhang93.github.io/MTCNN_face_detection_alignment/paper/spl.pdf)<br/>
-[2]: [ICML 2016: Understanding and improving convolutional neural networks via concatenated rectified linear units](https://arxiv.org/pdf/1603.05201)
+[2]: [ICML 2016: Understanding and improving convolutional neural networks via concatenated rectified linear units](../../../neuron/CReLU.html)
 
 ## DCFPN
 

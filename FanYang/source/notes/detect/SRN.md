@@ -14,13 +14,13 @@
 1. 召回效率：高召回率下减少误报数量，分类要准，减少 False Positive。
 2. 定位精度：因 Wider Face 采用 MSCOCO 的评估标准，要提高边框位置的准确性。
 
-<center>![](/_static/img/Detect_Face_SRN_0.png)图 1 (a) STC 和 STR 分别增加正/负样本比例 38 和 3 倍；(b) SRN 增加大概 20% 的召回率；<br/>(c) STR 提供更好的回归初始框；(d) SRN 相对于 RetinaNet 定位更准 </center>
+<center>![](/_static/img/Detect_Face_SRN_0.png)<br/>图 1 (a) STC 和 STR 分别增加正/负样本比例 38 和 3 倍；(b) SRN 增加大概 20% 的召回率；<br/>(c) STR 提供更好的回归初始框；(d) SRN 相对于 RetinaNet 定位更准 </center>
 
 ## 网络框架
 
 SRN 整体上是基于 RefineDet<sup>[1]</sup> 和 RetinaNet<sup>[2]</sup> 结合的改进。
 
-<center>![](/_static/img/Detect_Face_SRN_1.png)图 2 SRN 的网络结构，包括 STC，STR，RFM </center>
+<center>![](/_static/img/Detect_Face_SRN_1.png)<br/>图 2 SRN 的网络结构，包括 STC，STR，RFM </center>
 
 1. STC：Selective Two-Step Classification，由 RefineDet<sup>[1]</sup> 引入，通过级联的两步分类机制，在第一段采用预设阈值 `$\theta=0.99$` 提前清楚简单背景锚框。与 RefineDet 不同的是，SRN 只在低三段使用了两步分类，因为低三层产生了绝大多数（88.9%）的锚框和更严重的类别不均衡，同时面临着特征不充分的问题，需要使用两步分类来减少搜索空间、缓解类别不均衡、二段精细分类。损失函数：
   <center>![](/_static/img/Detect_Face_SRN_2.png)</center>
