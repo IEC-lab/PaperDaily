@@ -209,6 +209,92 @@ Deep neural networks have been proven powerful at processing perceptual data, su
 
 
 
+
+# Facial Expression Recognition with Inconsistently Annotated Datasets 
+
+**paper**:http://openaccess.thecvf.com/content_ECCV_2018/papers/Jiabei_Zeng_Facial_Expression_Recognition_ECCV_2018_paper.pdf
+
+**code**:https://github.com/dualplus/LTNet 
+
+**Author**:  Jiabei Zeng, Shiguang Shan, and Xilin Chen
+
+**time**: ECCV2018
+
+## Abstract
+
+Annotation errors and bias are inevitable among different facial expression datasets due to the subjectiveness of annotating facial expressions. Ascribe to the inconsistent annotations, performance of existing facial expression recognition (FER) methods cannot keep improving when the training set is enlarged by merging multiple datasets. To address the inconsistency, we propose an Inconsistent Pseudo Annotations to Latent Truth(IPA2LT) framework to train a FER model from multiple inconsistently labeled datasets and large scale unlabeled data. In IPA2LT, we assign each sample more than one labels with human annotations or model predictions. Then, we propose an end-to-end LTNet with a scheme of discovering the latent truth from the inconsistent pseudo labels and the input face images. To our knowledge, IPA2LT serves as the first work to solve the training problem with inconsistently labeled FER datasets. Experiments on synthetic data validate the effectiveness of the proposed method in learning from inconsistent labels. We also conduct extensive experiments in FER and show that our method outperforms other state-of-the-art and optional methods under a rigorous evaluation protocol involving 7 FER datasets 
+
+**翻译**:由于标注面部表情的主观性，标注错误和误差在不同的面部表情数据集种是不可避免的，归因于不一致的标注。当通过合并多个数据集扩大数据集时，现有的面部表情识别方法的性能不能持续提升，为了解决这种不一致性，我们提出了一种不一致的潜在真实伪标注(IPA2LT)框架，用于从多个不一致标记的数据集和大规模未标记数据中训练FER模型。在IPA2LT中，我们未每个样本分配多个带有人工标注或模型预测的标签，然后我们提出一种端到端的LTNet，其思想时从不一致的伪标签和输入的面部图像中发现潜在的真相(也就是真实标签)。据我们所知，IPA2LT是第一个用不一致标记的FER数据集来解决训练问题的工作，对合成数据的实验验证了所提出的方法从不一致标签中学习的有效性。我们还在FER中进行了大量实验，并表明我们的方法在涉及7个FER数据集的严格评估协议下优于其他最先进和可选的方法。
+
+![Q图片2018121810594](./images/QQ图片20181218105946.png)
+
+训练过程分为3步：
+
+1. 分别从数据集A和B中训练两个模型标注工具
+2. 模型的预测结果可能和人工标注不一致，它们将作为一些人工标注数据集和大规模未标注数据集中每个图片的多个标签，每个未标注数据作为数据集A和数据集B之间的桥梁，因为它们是用相同的模型预测出来的结果。
+3. 训练LTNet，预测图片输出隐藏的真实标签，
+
+## Contribution
+
+- 提出了一个相对未研究过的问题：如何从多个标注不同的数据集中训练分类器，据我们所知，这是第一个解决不同的FER数据集标注不一致的工作
+- 提出了IPA2LT的框架从多个标注不一致的数据集和大规模未标注的数据上训练一个FER模型，提出了一个端到端训练的LTNet
+- 在合成数据和真实数据上的实验验证了所提出的方法在从不一致标签中学习的有效性，我们在FER中进行了广泛的实验，并在涉及7个FER数据集的严格评估写一下展示了IPA2LT优于现有技术的优势
+
+## Summary
+
+从表情识别这一任务的特性--具有主观性，发现数据集标签不一致的情况，提出一个端到端的训练模型，从不一致的标签学习到标签之间潜在的关联，从而输出隐藏的真实标签，对于合并数据集来说，是一种方法，且有一定的合理性，并进行大量实验，发现在表情数据集上合并训练的效果要优于单独训练，并且本文提出的办法要优于其他混合的方法。
+
+
+
+# Facial Expression Recognition using Facial Landmark Detection and Feature Extraction on Neural Networks
+
+**paper**:[Facial Expression Recognition using Facial Landmark Detection and Feature Extraction on Neural Networks](http://arxiv.org/abs/1812.04510v1)
+
+**code**:
+
+**Author**:  Fuzail Khan                            
+
+**time**: 2018.12
+
+## Abstract
+
+The proposed framework in this paper has the primary objective of classifying the facial expression shown by a person using facial landmark detection and feature extraction. These classifiable expressions can be any one of the six universal emotions along with the neutral emotion. After initial facial detection, facial landmark detection and feature extraction are performed (where in the landmarks were determined to be the fiducial features: theeyebrows, eyes, nose and lips). This is primarily done using the Sobel horizontal edge detection method and the Shi Tomasi corner point detector. Thisleads to input feature vectors being formulated and trained into a Multi-LayerPerceptron (MLP) neural network in order to classify the expression beingdisplayed. Facial Expression Recognition (FER) is a significant step inreaching the eventual goal of artificial intelligence. If efficient methods can be brought about to automatically recognize these expressions, major advances may be achieved in computer vision.
+
+**翻译**:本文提出的框架的主要目的是使用人脸关键点检测和特征提取对面部表情进行分类，这些可分类的表情可以是6种普遍情绪种的任何一种或者中性情绪，在初始的面部检测之后，执行面部关键点检测和特征提取，主要使用Sobel水平边缘检测方法和Shi Tomasi角点检测器完成。这导致输入特征向量被指定并训练成多层感知器(MLP)神经网络，以便对表情进行分类。FER是实现人工智能最终目标的重要一步，如果可以利用有效的方法自动识别这些表情，则可以在计算机视觉中实现重大进步。
+
+## Contribution
+
+![Q图片2018122219491](./images/QQ图片20181222194912.png)
+
+![Q图片2018122219505](./images/QQ图片20181222195057.png)
+
+- 首先对输入的图片进行预处理，主要是去除不想要的噪声，增强图片的对比度，先用低通3x3高斯滤波器，有助于平滑图像并使梯度强度正则化，然后进行对比度自适应直方图均衡，用于光照强度修正
+
+- 人脸检测利用基于Haar特征的级联分类器
+
+- 关键点检测
+
+  - 人眼检测，主要是得到左眼和右眼的RoI，然后用于提取特征点
+  - 鼻子检测
+  - 眉毛和嘴唇检测
+
+- 提取特征向量，通过上一步骤提取到了特征点(F1-F18)，这一步使决定输入的特征向量送入神经网络中
+
+  ​
+
+  ![Q图片2018122220351](./images/QQ图片20181222203519.png)
+
+- 训练神经网络，进行分类
+
+## Summary
+
+这篇论文感觉方法还不是很先进，但是可能在某些特殊的数据集（表情很明显，图像质量比较好）效果会比较好，而论文选用的数据集从给出的例子来看，表情都是比较夸张的。
+
+
+
+
+
+
 > 模板
 >
 > # 标题
