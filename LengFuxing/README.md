@@ -10,3 +10,4 @@
 - 2018.12.18 [Deep Identity-Aware Transferof Facial Attributes](./Face/Deep_Identity-Aware_Transferof_Facial_Attributes/README.md)
 - 2018.12.19 [Stacked Hourglass Networks for Human Pose Estimation_CVPR2016](./Human_Pose/Stacked_Hourglass_Networks_for_Human_Pose_Estimation/README.md)
 - 2018.12.20 [Look at Boundary: A Boundary-Aware Face Alignment Algorithm](./Face/Look_at_Boundary_A_Boundary-Aware_Face_Alignment_Algorithm/README.md)
+- 2018.12.22 [Wing Loss for Robust Facial Landmark Localisation with Convolutional Neural Networks](./Face/Wing_Loss_for_Robust_Facial_Landmark_Localisation_with_Convolutional_Neural_Networks/README.md)
