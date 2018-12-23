@@ -43,4 +43,4 @@ methods on six benchmark datasets. Meanwhile, we demonstrate that our method run
 
 显性图计算一直是深度学习领域中比较有挑战性的问题，起初是为了预测人在一张图片上的视觉关注区域，而后扩展到预测会包含显性物体的区域。
 在本论文中，计算问题被转化为回归问题，采用的方法是基于多层次的图像分割，并利用监督学习方法将区域特征向量映射为一个显著性分数。
-![image](image/
+
