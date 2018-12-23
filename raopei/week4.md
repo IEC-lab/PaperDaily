@@ -16,7 +16,7 @@ with (88.6% vs. 88.0%) and without additional optical flow
 information (82.6% vs. 73.0%).
 
 ### Contribution
-![image](image/$O$)D@K(LH)M~`X((K8$Q7D.png)
+![image](image/1.png)
 
 
 CNN在静态图像的处理中大显神通，但是在处理视频信息时，却是力有不逮。这主要是有两个原因。\
