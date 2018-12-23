@@ -17,4 +17,4 @@ information (82.6% vs. 73.0%).
 
 ### Contribution
 
-![image](https://github.com/IEC-lab/PaperDaily/blob/master/raopei/image/%24O%24)D%40K(LH)M~%60X((K8%24Q7D.png)
+
