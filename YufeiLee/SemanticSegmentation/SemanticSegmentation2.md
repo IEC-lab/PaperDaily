@@ -229,6 +229,7 @@ paper: [Large Kernel Matters -- Improve Semantic Segmentation by Global Convolut
     <img src="img2/lkm1.png">
 </div>
 
+
 **类FCN结构作为基本框架，GCN用于生成语义得分图**
 
 - 为了使全局卷积更具实用性，我们采用了大卷积核的对称分离卷积，以降低模型参数和计算量。
@@ -270,7 +271,53 @@ paper: [Large Kernel Matters -- Improve Semantic Segmentation by Global Convolut
 
 在深度学习中，分类和定位的差异导致两类模型有很大的差异。对于分类，大多数现代框架，如AlexNet，VGG、 GoogleNet或ResNet这种“锥形”网络，如图1.A中所示：特征是从相对较小的隐藏层中提取出来的，在空间维度上来说是粗糙的，分类器通过全连接层或全局池化层与feature map相连。这使得特征对局部扰动和不同类型的输入变化具有鲁棒性。而对于定位，我们需要相对较大的feature map来编码更多的空间信息。这就是为什么大多数语义分割框架，如FCN、DeepLab、Deconv-Net，采用如图1.B所示的“桶形”网络。通过反卷积，反池化和空洞卷积等技术来生成高分辨率的特征映射，然后将分类器连接起来。对每个feature map上的空间位置进行分类，生成像素级语义标签。‌
 
+# Mask RCNN
 
+paper:[Mask RCNN](https://arxiv.org/abs/1703.06870)
+
+code: [Mask RCNN](https://github.com/matterport/Mask_RCNN)
+
+## Abstract
+
+我们提出了一个概念上简单灵活通用的目标实例分割框架，我们的方法有效的在一个图片内检测物体，同时为每一个实例生成一个高质量的分割掩码。这个方法为Mask RCNN,通过在已存在的 检测框识别分支基础上，并行添加一个预测掩码的分支来扩展Faster RCNN，Mask RCNN训练起来很简单，只是在faster RCNN基础上加很小的开销，运行速度为5fp，此外，Mask RCNN用以推广到其他任务，例如允许我们评估人体姿态在相同的框架下。我们展示了COCO系列挑战赛的三个项目中都取得了最佳成绩，包括实例分割、边框目标检测、人体关键点检测。没有使用额外技巧的情况下，Mask RCNN表现优于现有的单一模型实体，包括COCO2016挑战的获胜者，我们希望我们简单有效的方法能称为一个基础方法，并有助于未来实例级识别的研究。
+
+## Contributions
+
+<div align="center">
+    <img src="img2/mask1.png">
+</div>
+
+Mask R-CNN，它通过在每个感兴趣区域（RoI）上添加一个分支来预测分割掩模，继承自Faster R-CNN，这个分支与现有的分类和边框回归并行。没有额外的技巧，Mask R-CNN超过了COCO 2016关键点竞赛的获胜者，同时运行速度达到了5FPS，因此，Mask R-CNN可以被广泛的看作是用于实例级识别的灵活框架，并且可以容易的扩展到更复杂的任务。
+
+## Mask R-CNN
+
+Faster R-CNN为每个候选目标输出一个类标签和一个边框偏移量。为此，我们添加了一个输出目标掩模的第三条分支。Faster R-CNN: 第一级为区域建议网络（RPN）目的是提出候选目标框，第二级本质上是fast RCNN使用ROIpooling从每个候选框中提取特征，并进行分类和边框回归。Mask R-CNN采用相同的两级，第一级RPN第二级与预测并行，会为每个ROI输出一个二进制掩模。在训练中，我们将每个采样后的RoI上的多任务损失函数定义为： L = Lcls + Lbox + Lmask
+
+![L_{cls}](https://www.zhihu.com/equation?tex=L_%7Bcls%7D)和 ![L_{box}](https://www.zhihu.com/equation?tex=L_%7Bbox%7D) 与faster rcnn的定义没有区别。需要具体说明的是 ![L_{mask}](https://www.zhihu.com/equation?tex=L_%7Bmask%7D) ，假设一共有K个类别，则mask分割分支的输出维度是 ![K*m*m](https://www.zhihu.com/equation?tex=K%2Am%2Am) , 对于 ![m*m](https://www.zhihu.com/equation?tex=m%2Am) 中的每个点，都会输出K个二值Mask（每个类别使用sigmoid输出）。需要注意的是，计算loss的时候，并不是每个类别的sigmoid输出都计算二值交叉熵损失，而是该像素属于哪个类，哪个类的sigmoid输出才要计算损失(如图红色方形所示)。并且在测试的时候，我们是通过分类分支预测的类别来选择相应的mask预测。这样，mask预测和分类预测就彻底解耦了。
+
+这与FCN方法是不同，FCN是对每个像素进行多类别softmax分类，然后计算交叉熵损失，很明显，这种做法是会造成类间竞争的，而每个类别使用sigmoid输出并计算二值损失，可以避免类间竞争。实验表明，通过这种方法，可以较好地提升性能。
+
+在Faster RCNN中，有两次整数化的过程：
+
+1. region proposal的xywh通常是小数，但是为了方便操作会把它整数化。
+2. 将整数化后的边界区域平均分割成 k x k 个单元，对每一个单元的边界进行整数化
+
+事实上，经过上述两次整数化，此时的候选框已经和最开始回归出来的位置有一定的偏差，这个偏差会影响检测或者分割的准确度。在论文里，作者把它总结为“不匹配问题”（misalignment）。为了解决这个问题，ROI Align方法取消整数化操作，保留了小数，使用以上介绍的双线性插值的方法获得坐标为浮点数的像素点上的图像数值。
+
+<div align="center">
+    <img src="img2/mask2.png">
+</div>
+
+## Experience
+
+![](img2/mask6.png)
+
+![](img2/mask4.png)
+
+![](img2/mask5.png)
+
+sth:[mask rcnn](https://zhuanlan.zhihu.com/p/37998710)
+
+trans: [mask rcnn](https://blog.csdn.net/myGFZ/article/details/79136610)
 
 paper:[Learning a Discriminative Feature Network for Semantic Segmentation](https://arxiv.org/abs/1804.09337) `CVPR2018`
-
