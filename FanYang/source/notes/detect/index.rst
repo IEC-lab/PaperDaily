@@ -7,6 +7,10 @@
    "Single-Shot Refinement Neural Network for Object Detection"  
     推荐，一个二次回归的单段检测器，相对于 SSD，速度下降不大，但准确率显著提升。
   
+- Detect at 200 FPS
+   "Object detection at 200 Frames Per Second"
+    推荐，一个二次回归的单段检测器，相对于
+    
 
 **人脸检测**
 
@@ -32,6 +36,10 @@
    :maxdepth: 1
     
    RefineDet
+   200FPS
    fast_fd
    SRN
    DSFD
+
+
+Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference

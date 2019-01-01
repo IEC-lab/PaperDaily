@@ -13,6 +13,8 @@
    notes/detect/index
    notes/system/index
    notes/neuron/index
+   
+   notes/resource
 
 .. Indices and tables
 .. ==================
