@@ -1,6 +1,6 @@
 # MULTI-SCALE CONTEXT AGGREGATION BY DILATED CONVOLUTIONS
 
-**paper:**[multi-scale context aggregation by dilated convolutions](https://arxiv.org/abs/1511.07122)
+**paper:**[multi-scale context aggregation by dilated convolutions](https://arxiv.org/abs/1511.07122) `CVPR2015`
 
 
 ## Abstract
