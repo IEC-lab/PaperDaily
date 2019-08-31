@@ -1,3 +1,15 @@
+# **Useful Trick**
+Bag of Tricks for Image Classification with Convolutional Neural Networks
+
+https://arxiv.org/abs/1812.01187
+
+——列举在ImageNet数据集上提高分类性能的训练技巧
+
+——以ResNet-50为例，将top-1准确率从75.3%提高的79.29%
+
+
+有源码,挺有用
+
 # **Detection and Counting**
 
 ## 1.Towards Adversarially Robust Object Detection 
