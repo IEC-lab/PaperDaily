@@ -176,7 +176,7 @@ https://github.com/d-li14/HBONet
 提出一种新的bottleneck unit结构,
 基于MobileNet-V2中的inverted bottleneck, 在spatial dimension上做类似的contraction-expansion操作,
 最后的concat操作,其实是把input feature map的后一半channels 叠加在前面,这样保证channel数量不变,
-在ImageNet 上面,和MobileNetV2进行对比:在相似的计算量的前提下,HBONet 比MobileNetV2的top-1 accuracy 提高了0.9 ~ 6.6,计算量越小,提升越明显,作为backbone, 在VOC07 detection问题上,相对于同等级的mobilenetV2, mAP提升了0.6~6.3,在Market1501的ReID问题上,相对于同等级的MobileNetV2,mAP提升了3.6~3.9, rank-1 提升了1.7~5.0
+在ImageNet 上面,和MobileNetV2进行对比:在相似的计算量的前提下,HBONet 比MobileNetV2的top-1 accuracy 提高了0.9 ~ 6.6,计算量越小,提升越明显,作为backbone, 在VOC07 detection问题上,相对于同等级的mobilenetV2, mAP提升了0.6 ~ 6.3,在Market1501的ReID问题上,相对于同等级的MobileNetV2,mAP提升了3.6 ~ 3.9, rank-1 提升了1.7 ~ 5.0
 
 
 # **Optimizer**
