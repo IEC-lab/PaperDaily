@@ -1,3 +1,6 @@
+# Paper Notes in JianShu
+
+
 Efficient Coarse-to-Fine Non-Local Module for the Detection of Small Objects
 
 
