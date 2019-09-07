@@ -150,3 +150,113 @@ An Analysis of Scale Invariance in Object Detection – SNIP(CVPR2018)
 
 
 https://www.jianshu.com/p/a1fa2c7a255c
+
+
+
+
+Rethingking The Value of Network Pruning
+
+
+
+
+https://www.jianshu.com/p/3333df02f52a
+
+
+
+
+Feature Selective Anchor-Free Module for Single-Shot Object Detection
+
+
+
+
+https://www.jianshu.com/p/71d848937643
+
+
+
+
+Bag of Tricks for Image Classification with Convolutional Neural Networks
+
+
+
+
+https://www.jianshu.com/p/8d5f4a8f097f
+
+
+
+
+Densely Connected Search Space for More Flexible Neural Architecture Search
+
+
+
+
+https://www.jianshu.com/p/79cb54fea1ec
+
+
+
+
+Searching for A Robust Neural Architecture in Four GPU Hours
+
+
+
+
+https://www.jianshu.com/p/a9e7016fc4b3
+
+
+
+
+FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search
+
+
+
+
+https://www.jianshu.com/p/fede81b6a299
+
+
+
+
+Neural Architecture Search: A Survey
+
+
+
+
+https://www.jianshu.com/p/fcb11cb1e214
+
+
+
+
+DARTS: Differentiable Architecture Search
+
+
+
+
+https://www.jianshu.com/p/809ac4d117b6
+
+
+
+
+Data Augmentation by Pairing Samples for Images Classification
+
+
+
+
+https://www.jianshu.com/p/5280cd495700
+
+
+
+
+Mixup:Beyond Empirical Risk Minimization
+
+
+
+
+https://www.jianshu.com/p/980adca722a7
+
+
+
+
+CornerNet-Lite: Efficient Keypoint Based Object Detection
+
+
+
+
+https://www.jianshu.com/p/1aa79aac106a
